@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Publish s3') {
             steps {
-                withAWS(credentials:'aws-credentials', region:'eu-north-1') {
+                withAWS(credentials:'jenkins-role-s3', region:'eu-north-1') {
                     s3Upload(bucket:"ci-artifacts-jenkins-lfs267", includePathPattern: '**/.jar', pathStyleAccessEnabled: true, sseAlgorithm:'AES256')
                 }
             }
